@@ -18,14 +18,22 @@ RUN bash -c 'source $HOME/.nvm/nvm.sh && nvm install 8.9.0'
 # Update, upgrade and install extra PHP modules
 RUN apt update -q && apt upgrade -yqq && apt install -yqq \
     git \
+    libmagickwand-dev \
     libmcrypt-dev \
     libssl-dev \
     yarn \
     zip \
     zlib1g-dev libicu-dev g++ && \
+    pecl install \
+        imagick \
+        redis &&
     docker-php-ext-install -j$(nproc) \
         bcmath \
-        intl
+        intl && \
+    docker-php-ext-enable \
+        imagick \
+        redis
+
 
 # Composer installer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
