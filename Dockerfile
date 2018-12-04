@@ -26,7 +26,7 @@ RUN apt update -q && apt upgrade -yqq && apt install -yqq \
     zlib1g-dev libicu-dev g++ && \
     pecl install \
         imagick \
-        redis &&
+        redis && \
     docker-php-ext-install -j$(nproc) \
         bcmath \
         intl && \
