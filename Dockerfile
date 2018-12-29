@@ -26,12 +26,14 @@ RUN apt update -q && apt upgrade -yqq && apt install -yqq \
     zlib1g-dev libicu-dev g++ && \
     pecl install \
         imagick \
+        mcrypt-1.0.1 \
         redis && \
     docker-php-ext-install -j$(nproc) \
         bcmath \
         intl && \
     docker-php-ext-enable \
         imagick \
+        mcrypt \
         redis
 
 
